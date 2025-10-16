@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalés da Marambaia - Reservas</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --accent-blue: #60a5fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            background: url('https://source.unsplash.com/random/1600x900/?cabin,resort') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-blue);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-blue);
+        }
+        
+        .btn-secondary {
+            background-color: #6b7280;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-blue);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .gallery-text {
+            padding: 1rem;
+        }
+        
+        .gallery-text h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+        
+        .reservation-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .admin-login {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .admin-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .admin-nav {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .admin-nav button {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+        }
+        
+        .admin-nav button.active {
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--primary-blue);
+        }
+        
+        .admin-section {
+            display: none;
+        }
+        
+        .admin-section.active {
+            display: block;
+        }
+        
+        .availability-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 2rem;
+        }
+        
+        .calendar-day {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .calendar-day.available {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+        }
+        
+        .calendar-day.booked {
+            background-color: #fecaca;
+            color: #dc2626;
+        }
+        
+        .reservation-list {
+            margin-top: 2rem;
+        }
+        
+        .reservation-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-blue);
+        }
+        
+        .reservation-actions {
+            margin-top: 1rem;
+        }
+        
+        .reservation-actions button {
+            margin-right: 0.5rem;
+        }
+        
+        .cabin-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cabin-option {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .cabin-option.selected {
+            border-color: var(--secondary-blue);
+            background-color: var(--light-blue);
+        }
+        
+        .cabin-option.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .terms-container {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-group input {
+            margin-top: 0.2rem;
+        }
+        
+        .whatsapp-confirmation {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .cancel-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Chalés da Marambaia</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#gallery">Galeria</a></li>
+                        <li><a href="#reservation">Reservas</a></li>
+                        <li><a href="#cancel">Cancelar Reserva</a></li>
+                        <li><a href="#" id="admin-link">Admin</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Bem-vindo aos Chalés da Marambaia</h1>
+            <p>Desfrute de momentos inesquecíveis em meio à natureza com todo o conforto que você merece.</p>
+            <a href="#reservation" class="btn">Fazer Reserva</a>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Nossos Espaços</h2>
+            <div class="gallery" id="gallery-container">
+                <!-- As imagens serão carregadas dinamicamente do Firebase -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Reserva -->
+    <section id="reservation">
+        <div class="container">
+            <h2 class="section-title">Faça sua Reserva</h2>
+            <form class="reservation-form" id="reservation-form">
+                <div class="form-group">
+                    <label for="checkin">Data de Check-in</label>
+                    <input type="date" id="checkin" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="checkout">Data de Check-out</label>
+                    <input type="date" id="checkout" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Número de Hóspedes</label>
+                    <input type="number" id="guests" class="form-control" min="1" max="20" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Selecione o Chalé/Quarto:</label>
+                    <div class="cabin-options" id="cabin-options">
+                        <!-- Opções de chalés serão carregadas dinamicamente -->
+                    </div>
+                </div>
+                
+                <h3>Informações Pessoais</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Telefone/WhatsApp</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" class="form-control" required>
+                    </div>
+                </div>
+                
+                <h3>Informações Adicionais</h3>
+                
+                <div class="form-group">
+                    <label for="cars">Quantidade de Carros</label>
+                    <input type="number" id="cars" class="form-control" min="0" max="3">
+                </div>
+                
+                <div class="form-group" id="license-plates-container">
+                    <!-- Campos para placas serão adicionados dinamicamente -->
+                </div>
+                
+                <div class="form-group">
+                    <label for="guest-names">Nomes dos Hóspedes (separados por vírgula)</label>
+                    <textarea id="guest-names" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Observações Adicionais</label>
+                    <textarea id="notes" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <h3>Termos e Condições</h3>
+                    <div class="terms-container">
+                        <p><strong>Política de Privacidade e Uso de Dados</strong></p>
+                        <p>Ao realizar uma reserva em nosso estabelecimento, você concorda com os seguintes termos:</p>
+                        <ol>
+                            <li>Autorizo o tratamento dos meus dados pessoais (incluindo CPF) para fins de registro de hospedagem, conforme exigido pela legislação brasileira.</li>
+                            <li>Compreendo que meus dados serão utilizados exclusivamente para a finalidade da reserva e não serão compartilhados com terceiros sem meu consentimento.</li>
+                            <li>Estou ciente de que posso solicitar a exclusão dos meus dados após o período legal de retenção.</li>
+                            <li>Concordo que a reserva só será confirmada após a confirmação via WhatsApp por nossa equipe.</li>
+                            <li>Estou ciente de que cancelamentos devem ser feitos exclusivamente via WhatsApp.</li>
+                            <li>Aceito as políticas de cancelamento e estada do estabelecimento.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="accept-terms" required>
+                        <label for="accept-terms">Li e aceito os termos e condições acima, bem como a política de privacidade.</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn">Enviar Reserva</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Seção de Cancelamento -->
+    <section id="cancel">
+        <div class="container">
+            <h2 class="section-title">Cancelar Reserva</h2>
+            <div class="cancel-section">
+                <p>Para cancelar sua reserva, entre em contato conosco via WhatsApp:</p>
+                <div class="whatsapp-confirmation">
+                    <p><strong>Atenção:</strong> Os cancelamentos só podem ser feitos via WhatsApp.</p>
+                    <a href="#" class="btn" id="whatsapp-cancel">Cancelar via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Área de Login do Admin -->
+    <section id="admin-login-section" class="hidden">
+        <div class="container">
+            <h2 class="section-title">Área Administrativa</h2>
+            <div class="admin-login">
+                <div class="form-group">
+                    <label for="admin-username">Usuário</label>
+                    <input type="text" id="admin-username" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="admin-password">Senha</label>
+                    <input type="password" id="admin-password" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <button id="admin-login-btn" class="btn">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Painel Administrativo -->
+    <section id="admin-panel-section" class="hidden">
+        <div class="container">
+            <h2 class="section-title">Painel Administrativo</h2>
+            <div class="admin-panel">
+                <div class="admin-nav">
+                    <button class="active" data-tab="gallery-management">Gerenciar Galeria</button>
+                    <button data-tab="availability-management">Gerenciar Disponibilidade</button>
+                    <button data-tab="cabin-management">Gerenciar Chalés</button>
+                    <button data-tab="reservation-management">Gerenciar Reservas</button>
+                </div>
+                
+                <div id="gallery-management" class="admin-section active">
+                    <h3>Adicionar Nova Imagem/Vídeo</h3>
+                    <form id="add-media-form">
+                        <div class="form-group">
+                            <label for="media-url">URL da Mídia</label>
+                            <input type="url" id="media-url" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="media-type">Tipo de Mídia</label>
+                            <select id="media-type" class="form-control">
+                                <option value="image">Imagem</option>
+                                <option value="video">Vídeo</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="media-title">Título</label>
+                            <input type="text" id="media-title" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="media-description">Descrição</label>
+                            <textarea id="media-description" class="form-control" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn">Adicionar à Galeria</button>
+                        </div>
+                    </form>
+                    
+                    <h3>Galeria Atual</h3>
+                    <div id="admin-gallery-container">
+                        <!-- Galeria administrativa será carregada aqui -->
+                    </div>
+                </div>
+                
+                <div id="availability-management" class="admin-section">
+                    <h3>Calendário de Disponibilidade</h3>
+                    <div class="availability-calendar" id="availability-calendar">
+                        <!-- Calendário será gerado dinamicamente -->
+                    </div>
+                    
+                    <div class="form-group">
+                        <button id="save-availability" class="btn">Salvar Disponibilidade</button>
+                    </div>
+                </div>
+                
+                <div id="cabin-management" class="admin-section">
+                    <h3>Gerenciar Chalés/Quartos</h3>
+                    <form id="add-cabin-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cabin-name">Nome do Chalé/Quarto</label>
+                                <input type="text" id="cabin-name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cabin-capacity">Capacidade (pessoas)</label>
+                                <input type="number" id="cabin-capacity" class="form-control" min="1" max="20" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cabin-description">Descrição</label>
+                            <textarea id="cabin-description" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cabin-price">Preço por noite (R$)</label>
+                            <input type="number" id="cabin-price" class="form-control" step="0.01" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn">Adicionar Chalé</button>
+                        </div>
+                    </form>
+                    
+                    <h3>Chalés/Quartos Cadastrados</h3>
+                    <div id="cabins-list">
+                        <!-- Lista de chalés será carregada aqui -->
+                    </div>
+                </div>
+                
+                <div id="reservation-management" class="admin-section">
+                    <h3>Reservas</h3>
+                    <div class="reservation-list" id="reservation-list">
+                        <!-- Lista de reservas será carregada aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>Chalés da Marambaia &copy; 2023 - Todos os direitos reservados</p>
+            <p>Contato: contato@chalesmarambaia.com | (XX) XXXX-XXXX</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+    <script>
+        // Configuração do Firebase - Substitua com suas credenciais
+        const firebaseConfig = {
+  apiKey: "AIzaSyBxEEYdy0mMdIN_Fzg0LU1vOzUtGI_eLyc",
+  authDomain: "reservas-fb780.firebaseapp.com",
+  projectId: "reservas-fb780",
+  storageBucket: "reservas-fb780.firebasestorage.app",
+  messagingSenderId: "450534943775",
+  appId: "1:450534943775:web:18af438f37f11433e4b92a"
+};
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Elementos DOM
+        const galleryContainer = document.getElementById('gallery-container');
+        const reservationForm = document.getElementById('reservation-form');
+        const adminLoginSection = document.getElementById('admin-login-section');
+        const adminPanelSection = document.getElementById('admin-panel-section');
+        const adminLink = document.getElementById('admin-link');
+        const adminLoginBtn = document.getElementById('admin-login-btn');
+        const adminNavButtons = document.querySelectorAll('.admin-nav button');
+        const adminSections = document.querySelectorAll('.admin-section');
+        const addMediaForm = document.getElementById('add-media-form');
+        const adminGalleryContainer = document.getElementById('admin-gallery-container');
+        const availabilityCalendar = document.getElementById('availability-calendar');
+        const saveAvailabilityBtn = document.getElementById('save-availability');
+        const reservationList = document.getElementById('reservation-list');
+        const licensePlatesContainer = document.getElementById('license-plates-container');
+        const carsInput = document.getElementById('cars');
+        const cabinOptionsContainer = document.getElementById('cabin-options');
+        const addCabinForm = document.getElementById('add-cabin-form');
+        const cabinsList = document.getElementById('cabins-list');
+        const guestsInput = document.getElementById('guests');
+        const whatsappCancelBtn = document.getElementById('whatsapp-cancel');
+
+        // Estado da aplicação
+        let currentUser = null;
+        let availabilityData = {};
+        let cabinsData = [];
+        let selectedCabin = null;
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar galeria
+            loadGallery();
+            
+            // Verificar se o usuário já está logado
+            checkAuthState();
+            
+            // Configurar eventos
+            setupEventListeners();
+            
+            // Carregar disponibilidade
+            loadAvailability();
+            
+            // Carregar reservas
+            loadReservations();
+            
+            // Carregar chalés
+            loadCabins();
+        });
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Navegação do admin
+            adminNavButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Ativar botão
+                    adminNavButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mostrar seção correspondente
+                    adminSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === tabId) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Link para área administrativa
+            adminLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminLogin();
+            });
+            
+            // Login do admin
+            adminLoginBtn.addEventListener('click', adminLogin);
+            
+            // Envio do formulário de reserva
+            reservationForm.addEventListener('submit', submitReservation);
+            
+            // Adicionar mídia à galeria
+            addMediaForm.addEventListener('submit', addMediaToGallery);
+            
+            // Salvar disponibilidade
+            saveAvailabilityBtn.addEventListener('click', saveAvailability);
+            
+            // Dinâmica de placas de carro
+            carsInput.addEventListener('change', updateLicensePlateFields);
+            
+            // Dinâmica de seleção de chalés
+            guestsInput.addEventListener('change', updateCabinOptions);
+            
+            // Adicionar chalé
+            addCabinForm.addEventListener('submit', addCabin);
+            
+            // Botão de cancelamento via WhatsApp
+            whatsappCancelBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openWhatsApp('cancelamento');
+            });
+        }
+
+        // Verificar estado de autenticação
+        function checkAuthState() {
+            auth.onAuthStateChanged(user => {
+                currentUser = user;
+                if (user) {
+                    showAdminPanel();
+                } else {
+                    hideAdminPanel();
+                }
+            });
+        }
+
+        // Mostrar login do admin
+        function showAdminLogin() {
+            adminLoginSection.classList.remove('hidden');
+            adminLoginSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Mostrar painel administrativo
+        function showAdminPanel() {
+            adminLoginSection.classList.add('hidden');
+            adminPanelSection.classList.remove('hidden');
+            adminPanelSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Carregar dados administrativos
+            loadAdminGallery();
+            loadReservations();
+            loadCabins();
+        }
+
+        // Ocultar painel administrativo
+        function hideAdminPanel() {
+            adminPanelSection.classList.add('hidden');
+        }
+
+        // Login do administrador
+        function adminLogin() {
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+            
+            // Aqui você implementaria a lógica de autenticação
+            // Por enquanto, vamos usar uma verificação simples
+            if (username === 'admin' && password === 'admin123') {
+                // Em um ambiente real, você usaria Firebase Auth
+                // auth.signInWithEmailAndPassword(username, password)
+                //   .then(() => {
+                //       console.log('Login bem-sucedido');
+                //   })
+                //   .catch(error => {
+                //       console.error('Erro de login:', error);
+                //       alert('Credenciais inválidas');
+                //   });
+                
+                // Simulação de login bem-sucedido
+                showAdminPanel();
+            } else {
+                alert('Credenciais inválidas');
+            }
+        }
+
+        // Carregar galeria do Firebase
+        function loadGallery() {
+            db.collection('gallery').get()
+                .then(snapshot => {
+                    galleryContainer.innerHTML = '';
+                    snapshot.forEach(doc => {
+                        const media = doc.data();
+                        const galleryItem = createGalleryItem(media);
+                        galleryContainer.appendChild(galleryItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar galeria:', error);
+                    // Exibir dados de exemplo em caso de erro
+                    displaySampleGallery();
+                });
+        }
+
+        // Carregar galeria administrativa
+        function loadAdminGallery() {
+            db.collection('gallery').get()
+                .then(snapshot => {
+                    adminGalleryContainer.innerHTML = '';
+                    snapshot.forEach(doc => {
+                        const media = doc.data();
+                        const adminGalleryItem = createAdminGalleryItem(media, doc.id);
+                        adminGalleryContainer.appendChild(adminGalleryItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar galeria administrativa:', error);
+                });
+        }
+
+        // Criar item da galeria
+        function createGalleryItem(media) {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            
+            let mediaElement;
+            if (media.type === 'video') {
+                mediaElement = document.createElement('video');
+                mediaElement.className = 'gallery-img';
+                mediaElement.src = media.url;
+                mediaElement.controls = true;
+            } else {
+                mediaElement = document.createElement('img');
+                mediaElement.className = 'gallery-img';
+                mediaElement.src = media.url;
+                mediaElement.alt = media.title;
+            }
+            
+            const textDiv = document.createElement('div');
+            textDiv.className = 'gallery-text';
+            textDiv.innerHTML = `
+                <h3>${media.title}</h3>
+                <p>${media.description}</p>
+            `;
+            
+            item.appendChild(mediaElement);
+            item.appendChild(textDiv);
+            
+            return item;
+        }
+
+        // Criar item da galeria administrativa
+        function createAdminGalleryItem(media, id) {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            
+            let mediaElement;
+            if (media.type === 'video') {
+                mediaElement = document.createElement('video');
+                mediaElement.className = 'gallery-img';
+                mediaElement.src = media.url;
+                mediaElement.controls = true;
+            } else {
+                mediaElement = document.createElement('img');
+                mediaElement.className = 'gallery-img';
+                mediaElement.src = media.url;
+                mediaElement.alt = media.title;
+            }
+            
+            const textDiv = document.createElement('div');
+            textDiv.className = 'gallery-text';
+            textDiv.innerHTML = `
+                <h3>${media.title}</h3>
+                <p>${media.description}</p>
+                <button class="btn" onclick="deleteMedia('${id}')">Excluir</button>
+            `;
+            
+            item.appendChild(mediaElement);
+            item.appendChild(textDiv);
+            
+            return item;
+        }
+
+        // Adicionar mídia à galeria
+        function addMediaToGallery(e) {
+            e.preventDefault();
+            
+            const url = document.getElementById('media-url').value;
+            const type = document.getElementById('media-type').value;
+            const title = document.getElementById('media-title').value;
+            const description = document.getElementById('media-description').value;
+            
+            db.collection('gallery').add({
+                url: url,
+                type: type,
+                title: title,
+                description: description,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                alert('Mídia adicionada com sucesso!');
+                addMediaForm.reset();
+                loadAdminGallery();
+                loadGallery();
+            })
+            .catch(error => {
+                console.error('Erro ao adicionar mídia:', error);
+                alert('Erro ao adicionar mídia. Tente novamente.');
+            });
+        }
+
+        // Excluir mídia
+        function deleteMedia(id) {
+            if (confirm('Tem certeza que deseja excluir esta mídia?')) {
+                db.collection('gallery').doc(id).delete()
+                    .then(() => {
+                        alert('Mídia excluída com sucesso!');
+                        loadAdminGallery();
+                        loadGallery();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao excluir mídia:', error);
+                        alert('Erro ao excluir mídia. Tente novamente.');
+                    });
+            }
+        }
+
+        // Carregar chalés do Firebase
+        function loadCabins() {
+            db.collection('cabins').get()
+                .then(snapshot => {
+                    cabinsData = [];
+                    snapshot.forEach(doc => {
+                        cabinsData.push({
+                            id: doc.id,
+                            ...doc.data()
+                        });
+                    });
+                    updateCabinOptions();
+                    renderCabinsList();
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar chalés:', error);
+                    // Dados de exemplo
+                    cabinsData = [
+                        { id: '1', name: 'Chalé Romântico', capacity: 2, description: 'Perfeito para casais', price: 250 },
+                        { id: '2', name: 'Chalé Família Pequena', capacity: 4, description: 'Ideal para famílias com crianças', price: 350 },
+                        { id: '3', name: 'Chalé Grandioso', capacity: 8, description: 'Espaçoso para grupos grandes', price: 600 }
+                    ];
+                    updateCabinOptions();
+                    renderCabinsList();
+                });
+        }
+
+        // Atualizar opções de chalés com base no número de hóspedes
+        function updateCabinOptions() {
+            const guests = parseInt(guestsInput.value) || 1;
+            cabinOptionsContainer.innerHTML = '';
+            selectedCabin = null;
+            
+            cabinsData.forEach(cabin => {
+                const cabinOption = document.createElement('div');
+                cabinOption.className = 'cabin-option';
+                cabinOption.dataset.id = cabin.id;
+                
+                if (cabin.capacity >= guests) {
+                    cabinOption.innerHTML = `
+                        <h4>${cabin.name}</h4>
+                        <p>Capacidade: até ${cabin.capacity} pessoas</p>
+                        <p>${cabin.description}</p>
+                        <p><strong>R$ ${cabin.price.toFixed(2)}/noite</strong></p>
+                    `;
+                    
+                    cabinOption.addEventListener('click', () => {
+                        document.querySelectorAll('.cabin-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        cabinOption.classList.add('selected');
+                        selectedCabin = cabin.id;
+                    });
+                } else {
+                    cabinOption.classList.add('disabled');
+                    cabinOption.innerHTML = `
+                        <h4>${cabin.name}</h4>
+                        <p>Capacidade: até ${cabin.capacity} pessoas</p>
+                        <p>${cabin.description}</p>
+                        <p><strong>Indisponível para ${guests} hóspedes</strong></p>
+                    `;
+                }
+                
+                cabinOptionsContainer.appendChild(cabinOption);
+            });
+        }
+
+        // Renderizar lista de chalés no painel admin
+        function renderCabinsList() {
+            cabinsList.innerHTML = '';
+            
+            cabinsData.forEach(cabin => {
+                const cabinItem = document.createElement('div');
+                cabinItem.className = 'reservation-item';
+                cabinItem.innerHTML = `
+                    <h4>${cabin.name}</h4>
+                    <p><strong>Capacidade:</strong> ${cabin.capacity} pessoas</p>
+                    <p><strong>Descrição:</strong> ${cabin.description}</p>
+                    <p><strong>Preço:</strong> R$ ${cabin.price.toFixed(2)}/noite</p>
+                    <div class="reservation-actions">
+                        <button class="btn btn-secondary" onclick="editCabin('${cabin.id}')">Editar</button>
+                        <button class="btn" onclick="deleteCabin('${cabin.id}')">Excluir</button>
+                    </div>
+                `;
+                cabinsList.appendChild(cabinItem);
+            });
+        }
+
+        // Adicionar chalé
+        function addCabin(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('cabin-name').value;
+            const capacity = parseInt(document.getElementById('cabin-capacity').value);
+            const description = document.getElementById('cabin-description').value;
+            const price = parseFloat(document.getElementById('cabin-price').value);
+            
+            db.collection('cabins').add({
+                name: name,
+                capacity: capacity,
+                description: description,
+                price: price,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                alert('Chalé adicionado com sucesso!');
+                addCabinForm.reset();
+                loadCabins();
+            })
+            .catch(error => {
+                console.error('Erro ao adicionar chalé:', error);
+                alert('Erro ao adicionar chalé. Tente novamente.');
+            });
+        }
+
+        // Editar chalé
+        function editCabin(id) {
+            const cabin = cabinsData.find(c => c.id === id);
+            if (!cabin) return;
+            
+            const newName = prompt('Novo nome do chalé:', cabin.name);
+            if (newName === null) return;
+            
+            const newCapacity = prompt('Nova capacidade:', cabin.capacity);
+            if (newCapacity === null) return;
+            
+            const newDescription = prompt('Nova descrição:', cabin.description);
+            if (newDescription === null) return;
+            
+            const newPrice = prompt('Novo preço:', cabin.price);
+            if (newPrice === null) return;
+            
+            db.collection('cabins').doc(id).update({
+                name: newName,
+                capacity: parseInt(newCapacity),
+                description: newDescription,
+                price: parseFloat(newPrice)
+            })
+            .then(() => {
+                alert('Chalé atualizado com sucesso!');
+                loadCabins();
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar chalé:', error);
+                alert('Erro ao atualizar chalé. Tente novamente.');
+            });
+        }
+
+        // Excluir chalé
+        function deleteCabin(id) {
+            if (confirm('Tem certeza que deseja excluir este chalé?')) {
+                db.collection('cabins').doc(id).delete()
+                    .then(() => {
+                        alert('Chalé excluído com sucesso!');
+                        loadCabins();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao excluir chalé:', error);
+                        alert('Erro ao excluir chalé. Tente novamente.');
+                    });
+            }
+        }
+
+        // Carregar disponibilidade
+        function loadAvailability() {
+            db.collection('availability').doc('current').get()
+                .then(doc => {
+                    if (doc.exists) {
+                        availabilityData = doc.data();
+                        renderAvailabilityCalendar();
+                    } else {
+                        // Inicializar com dados padrão se não existir
+                        initializeAvailability();
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar disponibilidade:', error);
+                });
+        }
+
+        // Inicializar disponibilidade
+        function initializeAvailability() {
+            const today = new Date();
+            const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+            
+            availabilityData = {
+                startDate: today.toISOString().split('T')[0],
+                endDate: nextMonth.toISOString().split('T')[0],
+                availableDates: []
+            };
+            
+            // Marcar todos os dias como disponíveis inicialmente
+            const currentDate = new Date(today);
+            while (currentDate <= nextMonth) {
+                availabilityData.availableDates.push(currentDate.toISOString().split('T')[0]);
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            db.collection('availability').doc('current').set(availabilityData)
+                .then(() => {
+                    renderAvailabilityCalendar();
+                })
+                .catch(error => {
+                    console.error('Erro ao inicializar disponibilidade:', error);
+                });
+        }
+
+        // Renderizar calendário de disponibilidade
+        function renderAvailabilityCalendar() {
+            availabilityCalendar.innerHTML = '';
+            
+            // Cabeçalho do calendário
+            const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            daysOfWeek.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.style.fontWeight = 'bold';
+                availabilityCalendar.appendChild(dayElement);
+            });
+            
+            // Dias do mês
+            const startDate = new Date(availabilityData.startDate);
+            const endDate = new Date(availabilityData.endDate);
+            const currentDate = new Date(startDate);
+            
+            while (currentDate <= endDate) {
+                const dateString = currentDate.toISOString().split('T')[0];
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = currentDate.getDate();
+                
+                if (availabilityData.availableDates.includes(dateString)) {
+                    dayElement.classList.add('available');
+                } else {
+                    dayElement.classList.add('booked');
+                }
+                
+                dayElement.addEventListener('click', () => {
+                    toggleAvailability(dateString, dayElement);
+                });
+                
+                availabilityCalendar.appendChild(dayElement);
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+        }
+
+        // Alternar disponibilidade de uma data
+        function toggleAvailability(dateString, element) {
+            const index = availabilityData.availableDates.indexOf(dateString);
+            
+            if (index > -1) {
+                // Data está disponível, marcar como reservada
+                availabilityData.availableDates.splice(index, 1);
+                element.classList.remove('available');
+                element.classList.add('booked');
+            } else {
+                // Data está reservada, marcar como disponível
+                availabilityData.availableDates.push(dateString);
+                element.classList.remove('booked');
+                element.classList.add('available');
+            }
+        }
+
+        // Salvar disponibilidade
+        function saveAvailability() {
+            db.collection('availability').doc('current').set(availabilityData)
+                .then(() => {
+                    alert('Disponibilidade salva com sucesso!');
+                })
+                .catch(error => {
+                    console.error('Erro ao salvar disponibilidade:', error);
+                    alert('Erro ao salvar disponibilidade. Tente novamente.');
+                });
+        }
+
+        // Carregar reservas
+        function loadReservations() {
+            db.collection('reservations').orderBy('createdAt', 'desc').get()
+                .then(snapshot => {
+                    reservationList.innerHTML = '';
+                    snapshot.forEach(doc => {
+                        const reservation = doc.data();
+                        const reservationItem = createReservationItem(reservation, doc.id);
+                        reservationList.appendChild(reservationItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar reservas:', error);
+                });
+        }
+
+        // Criar item de reserva
+        function createReservationItem(reservation, id) {
+            const item = document.createElement('div');
+            item.className = 'reservation-item';
+            
+            const status = reservation.status || 'Pendente';
+            const statusClass = status === 'Confirmada' ? 'confirmed' : status === 'Cancelada' ? 'cancelled' : 'pending';
+            
+            // Encontrar nome do chalé
+            const cabin = cabinsData.find(c => c.id === reservation.cabinId) || { name: 'Não especificado' };
+            
+            item.innerHTML = `
+                <h4>Reserva de ${reservation.name} - ${reservation.checkin} a ${reservation.checkout}</h4>
+                <p><strong>Status:</strong> <span class="${statusClass}">${status}</span></p>
+                <p><strong>Chalé:</strong> ${cabin.name}</p>
+                <p><strong>Hóspedes:</strong> ${reservation.guests}</p>
+                <p><strong>Contato:</strong> ${reservation.email} | ${reservation.phone}</p>
+                <div class="reservation-actions">
+                    <button class="btn" onclick="updateReservationStatus('${id}', 'Confirmada')">Confirmar</button>
+                    <button class="btn btn-secondary" onclick="updateReservationStatus('${id}', 'Cancelada')">Cancelar</button>
+                    <button class="btn" onclick="generateReservationFile('${id}')">Abrir Arquivo</button>
+                    <button class="btn" onclick="deleteReservation('${id}')">Excluir</button>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        // Enviar formulário de reserva
+        function submitReservation(e) {
+            e.preventDefault();
+            
+            if (!selectedCabin) {
+                alert('Por favor, selecione um chalé/quarto.');
+                return;
+            }
+            
+            const reservationData = {
+                checkin: document.getElementById('checkin').value,
+                checkout: document.getElementById('checkout').value,
+                guests: document.getElementById('guests').value,
+                cabinId: selectedCabin,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                cpf: document.getElementById('cpf').value,
+                cars: document.getElementById('cars').value,
+                guestNames: document.getElementById('guest-names').value,
+                notes: document.getElementById('notes').value,
+                status: 'Pendente',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            
+            // Coletar placas de carro
+            const licensePlates = [];
+            const licensePlateInputs = licensePlatesContainer.querySelectorAll('input');
+            licensePlateInputs.forEach(input => {
+                if (input.value) {
+                    licensePlates.push(input.value);
+                }
+            });
+            reservationData.licensePlates = licensePlates;
+            
+            // Verificar disponibilidade
+            const checkinDate = new Date(reservationData.checkin);
+            const checkoutDate = new Date(reservationData.checkout);
+            const currentDate = new Date(checkinDate);
+            let allDatesAvailable = true;
+            
+            while (currentDate < checkoutDate) {
+                const dateString = currentDate.toISOString().split('T')[0];
+                if (!availabilityData.availableDates.includes(dateString)) {
+                    allDatesAvailable = false;
+                    break;
+                }
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            if (!allDatesAvailable) {
+                alert('Desculpe, algumas das datas selecionadas não estão mais disponíveis. Por favor, selecione outras datas.');
+                return;
+            }
+            
+            // Salvar reserva
+            db.collection('reservations').add(reservationData)
+                .then((docRef) => {
+                    alert('Reserva enviada com sucesso! Agora você será direcionado para o WhatsApp para confirmar sua reserva.');
+                    reservationForm.reset();
+                    licensePlatesContainer.innerHTML = '';
+                    selectedCabin = null;
+                    updateCabinOptions();
+                    
+                    // Atualizar disponibilidade
+                    updateAvailabilityAfterReservation(reservationData.checkin, reservationData.checkout);
+                    
+                    // Recarregar reservas no painel admin
+                    if (currentUser) {
+                        loadReservations();
+                    }
+                    
+                    // Abrir WhatsApp para confirmação
+                    openWhatsApp('confirmacao', reservationData, docRef.id);
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar reserva:', error);
+                    alert('Erro ao enviar reserva. Tente novamente.');
+                });
+        }
+
+        // Atualizar disponibilidade após reserva
+        function updateAvailabilityAfterReservation(checkin, checkout) {
+            const checkinDate = new Date(checkin);
+            const checkoutDate = new Date(checkout);
+            const currentDate = new Date(checkinDate);
+            
+            while (currentDate < checkoutDate) {
+                const dateString = currentDate.toISOString().split('T')[0];
+                const index = availabilityData.availableDates.indexOf(dateString);
+                
+                if (index > -1) {
+                    availabilityData.availableDates.splice(index, 1);
+                }
+                
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            // Salvar disponibilidade atualizada
+            db.collection('availability').doc('current').set(availabilityData)
+                .catch(error => {
+                    console.error('Erro ao atualizar disponibilidade:', error);
+                });
+        }
+
+        // Abrir WhatsApp para confirmação ou cancelamento
+        function openWhatsApp(type, reservationData = null, reservationId = null) {
+            // Número do WhatsApp do administrador (substitua pelo número real)
+            const adminPhone = '5511999999999';
+            
+            let message = '';
+            
+            if (type === 'confirmacao' && reservationData) {
+                const cabin = cabinsData.find(c => c.id === reservationData.cabinId) || { name: 'Não especificado' };
+                message = `Olá! Gostaria de confirmar minha reserva nos Chalés da Marambaia:%0A%0A` +
+                         `*Nome:* ${reservationData.name}%0A` +
+                         `*CPF:* ${reservationData.cpf}%0A` +
+                         `*Check-in:* ${reservationData.checkin}%0A` +
+                         `*Check-out:* ${reservationData.checkout}%0A` +
+                         `*Chalé:* ${cabin.name}%0A` +
+                         `*Hóspedes:* ${reservationData.guests}%0A` +
+                         `*ID da Reserva:* ${reservationId}%0A%0A` +
+                         `Por favor, confirme a disponibilidade.`;
+            } else if (type === 'cancelamento') {
+                message = `Olá! Gostaria de cancelar minha reserva nos Chalés da Marambaia. Por favor, me informe os procedimentos.`;
+            }
+            
+            const whatsappUrl = `https://wa.me/${adminPhone}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Atualizar status da reserva
+        function updateReservationStatus(id, status) {
+            db.collection('reservations').doc(id).update({
+                status: status
+            })
+            .then(() => {
+                alert(`Reserva ${status.toLowerCase()} com sucesso!`);
+                loadReservations();
+                
+                // Se a reserva foi cancelada, liberar as datas
+                if (status === 'Cancelada') {
+                    // Aqui você implementaria a lógica para liberar as datas no calendário
+                    alert('Lembre-se de liberar as datas no calendário de disponibilidade.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar reserva:', error);
+                alert('Erro ao atualizar reserva. Tente novamente.');
+            });
+        }
+
+        // Gerar arquivo de reserva (para abrir no Word)
+        function generateReservationFile(reservationId) {
+            // Buscar dados da reserva
+            db.collection('reservations').doc(reservationId).get()
+                .then(doc => {
+                    if (doc.exists) {
+                        const reservation = doc.data();
+                        const cabin = cabinsData.find(c => c.id === reservation.cabinId) || { name: 'Não especificado' };
+                        
+                        // Criar conteúdo para o arquivo
+                        const content = `
+                            RESERVA - CHALÉS DA MARAMBAIA
+                            
+                            Dados da Reserva:
+                            ID: ${reservationId}
+                            Data: ${new Date(reservation.createdAt?.toDate()).toLocaleDateString('pt-BR')}
+                            Status: ${reservation.status || 'Pendente'}
+                            
+                            Período:
+                            Check-in: ${reservation.checkin}
+                            Check-out: ${reservation.checkout}
+                            
+                            Chalé: ${cabin.name}
+                            Número de hóspedes: ${reservation.guests}
+                            
+                            Dados do Responsável:
+                            Nome: ${reservation.name}
+                            CPF: ${reservation.cpf}
+                            E-mail: ${reservation.email}
+                            Telefone: ${reservation.phone}
+                            
+                            Lista de Hóspedes:
+                            ${reservation.guestNames || 'Não informado'}
+                            
+                            Veículos:
+                            Quantidade: ${reservation.cars || 0}
+                            Placas: ${reservation.licensePlates ? reservation.licensePlates.join(', ') : 'Nenhuma'}
+                            
+                            Observações:
+                            ${reservation.notes || 'Nenhuma'}
+                            
+                            Termos e Condições:
+                            - Reserva sujeita à confirmação de disponibilidade
+                            - Políticas de cancelamento conforme estabelecidas
+                            - Aceitação dos termos de uso de dados pessoais
+                        `;
+                        
+                        // Criar blob e link para download
+                        const blob = new Blob([content], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `reserva-${reservationId}.txt`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        
+                        alert('Arquivo gerado com sucesso! Você pode abri-lo no Word e editá-lo conforme necessário.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar reserva:', error);
+                    alert('Erro ao gerar arquivo. Tente novamente.');
+                });
+        }
+
+        // Excluir reserva
+        function deleteReservation(id) {
+            if (confirm('Tem certeza que deseja excluir esta reserva?')) {
+                db.collection('reservations').doc(id).delete()
+                    .then(() => {
+                        alert('Reserva excluída com sucesso!');
+                        loadReservations();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao excluir reserva:', error);
+                        alert('Erro ao excluir reserva. Tente novamente.');
+                    });
+            }
+        }
+
+        // Atualizar campos de placas de carro
+        function updateLicensePlateFields() {
+            const carsCount = parseInt(carsInput.value) || 0;
+            licensePlatesContainer.innerHTML = '';
+            
+            for (let i = 0; i < carsCount; i++) {
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+                formGroup.innerHTML = `
+                    <label for="license-plate-${i}">Placa do Carro ${i + 1}</label>
+                    <input type="text" id="license-plate-${i}" class="form-control" placeholder="AAA-0000">
+                `;
+                licensePlatesContainer.appendChild(formGroup);
+            }
+        }
+
+        // Exibir galeria de exemplo (para demonstração)
+        function displaySampleGallery() {
+            const sampleImages = [
+                {
+                    url: 'https://source.unsplash.com/random/600x400/?cabin,interior',
+                    title: 'Chalé Conforto',
+                    description: 'Interior aconchegante com lareira e vista para a natureza.'
+                },
+                {
+                    url: 'https://source.unsplash.com/random/600x400/?cabin,exterior',
+                    title: 'Vista Externa',
+                    description: 'Nossos chalés integrados perfeitamente à paisagem natural.'
+                },
+                {
+                    url: 'https://source.unsplash.com/random/600x400/?spa,relax',
+                    title: 'Área de Lazer',
+                    description: 'Espaço dedicado ao relaxamento e bem-estar dos hóspedes.'
+                }
+            ];
+            
+            galleryContainer.innerHTML = '';
+            sampleImages.forEach(media => {
+                const galleryItem = createGalleryItem({
+                    ...media,
+                    type: 'image'
+                });
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+    </script>
+</body>
+</html>
